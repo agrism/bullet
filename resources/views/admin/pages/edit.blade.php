@@ -349,7 +349,7 @@
         var headerHtml = document.getElementById('header_html').value;
         var footerHtml = document.getElementById('footer_html').value;
         var title = document.getElementById('title').value;
-        var bodyClass = document.getElementById('body_class').value || 'wp-singular page-template';
+        var bodyClass = document.getElementById('body_class').value || 'page-default';
         var locale = '{{ $page->locale }}';
 
         var fullDocument = '<!doctype html>'

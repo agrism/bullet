@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//macOS 26.2//EN
+N:Zunde;Kārlis;;;
+FN:Kārlis Zunde
+ORG:Zvērinātu advokātu birojs BULLET;
+TITLE:Advokāts
+EMAIL;type=INTERNET;type=WORK;type=pref:zunde@bullet.legal
+TEL;type=CELL;type=VOICE;type=pref:+371 27767373
+item1.URL;type=pref:bullet.legal
+item1.X-ABLabel:_$!<HomePage>!$_
+END:VCARD

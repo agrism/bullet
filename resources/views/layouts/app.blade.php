@@ -276,7 +276,7 @@
     </style>
     @stack('styles')
 </head>
-<body class="{{ $body_class ?? 'home wp-singular page-template' }}">
+<body class="{{ $body_class ?? 'page-home page-default' }}">
 <div class="page-wrapper">
     {!! $header ?? '' !!}
 

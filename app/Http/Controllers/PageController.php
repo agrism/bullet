@@ -257,7 +257,7 @@ class PageController extends Controller
 
         // 2. Fallback: If EN/RU requested and LV page exists in DB, generate from LV page
         $html = '';
-        $bodyClass = 'wp-singular page-template';
+        $bodyClass = 'page-default';
         $title = '';
         $description = '';
 

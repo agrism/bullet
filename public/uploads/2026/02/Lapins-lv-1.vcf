@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//macOS 26.2//EN
+N:Lapiņš;Uldis;;;
+FN:Uldis Lapiņš
+ORG:Zvērinātu advokātu birojs BULLET;
+TITLE:Advokāts
+EMAIL;type=INTERNET;type=WORK;type=pref:lapins@bullet.legal
+TEL;type=CELL;type=VOICE;type=pref:+371 2 9256717
+item1.URL;type=pref:bullet.legal
+item1.X-ABLabel:_$!<HomePage>!$_
+END:VCARD
