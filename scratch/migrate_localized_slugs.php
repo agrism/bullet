@@ -153,6 +153,11 @@ function buildTranslationDictionary(string $jsonFile): array
     return $replacements;
 }
 
+function cleanFooter(string $markup): string
+{
+    return preg_replace('/<div class=[\'"]footer__copy-right[\'"].*?<\/div>/is', '', $markup);
+}
+
 $enDict = buildTranslationDictionary(base_path('translations_en.json'));
 $ruDict = buildTranslationDictionary(base_path('translations_ru.json'));
 
@@ -172,7 +177,7 @@ foreach ($lvPages as $lvPage) {
     // 1. Update LV page header switcher, links & images
     $lvHeader = buildLangSwitcher(cleanImages(rewriteInternalLinks($lvPage->header_html, 'lv')), $canonicalKey, 'lv');
     $lvContent = cleanImages(rewriteInternalLinks($cleanedLvContent, 'lv'));
-    $lvFooter = cleanImages(rewriteInternalLinks($lvPage->footer_html, 'lv'));
+    $lvFooter = cleanFooter(cleanImages(rewriteInternalLinks($lvPage->footer_html, 'lv')));
     $lvPage->header_html = $lvHeader;
     $lvPage->content_html = $lvContent;
     $lvPage->footer_html = $lvFooter;
@@ -182,7 +187,7 @@ foreach ($lvPages as $lvPage) {
     $enSlug = $slugMap[$canonicalKey]['en'] ?? $canonicalKey;
     $enHeader = strtr(buildLangSwitcher(cleanImages(rewriteInternalLinks($lvPage->header_html, 'en')), $canonicalKey, 'en'), $enDict);
     $enContent = strtr(cleanImages(rewriteInternalLinks($cleanedLvContent, 'en')), $enDict);
-    $enFooter = strtr(cleanImages(rewriteInternalLinks($lvPage->footer_html, 'en')), $enDict);
+    $enFooter = cleanFooter(strtr(cleanImages(rewriteInternalLinks($lvPage->footer_html, 'en')), $enDict));
     $enTitle = strtr($lvPage->title, $enDict);
     if (!str_contains($enTitle, 'Law Office BULLET')) {
         $enTitle = preg_replace('/Advokātu birojs BULLET/u', 'Law Office BULLET', $enTitle);
@@ -207,7 +212,7 @@ foreach ($lvPages as $lvPage) {
     $ruSlug = $slugMap[$canonicalKey]['ru'] ?? $canonicalKey;
     $ruHeader = strtr(buildLangSwitcher(cleanImages(rewriteInternalLinks($lvPage->header_html, 'ru')), $canonicalKey, 'ru'), $ruDict);
     $ruContent = strtr(cleanImages(rewriteInternalLinks($cleanedLvContent, 'ru')), $ruDict);
-    $ruFooter = strtr(cleanImages(rewriteInternalLinks($lvPage->footer_html, 'ru')), $ruDict);
+    $ruFooter = cleanFooter(strtr(cleanImages(rewriteInternalLinks($lvPage->footer_html, 'ru')), $ruDict));
     $ruTitle = strtr($lvPage->title, $ruDict);
     if (!str_contains($ruTitle, 'Адвокатское бюро BULLET')) {
         $ruTitle = preg_replace('/Advokātu birojs BULLET/u', 'Адвокатское бюро BULLET', $ruTitle);

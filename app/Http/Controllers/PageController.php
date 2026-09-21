@@ -321,9 +321,14 @@ class PageController extends Controller
         preg_match('/<div[^>]*class=[\'"][^\'"]*footer[^\'"]*[\'"][^>]*>.*?<\/div>\s*(?=<script|<div[^>]+id=[\'"]cmplz|<div[^>]+class=[\'"]cmplz|$)/is', $html, $footerMatch);
         $footerHtml = $footerMatch[0] ?? '';
 
+        // Clean up footer agency credits
+        $cleanFooter = function ($markup) {
+            return preg_replace('/<div class=[\'"]footer__copy-right[\'"].*?<\/div>/is', '', $markup);
+        };
+
         $headerHtml = $translate($buildLangSwitcher($cleanImages($transformLinks($headerHtml))));
         $contentHtml = $translate($cleanImages($transformLinks($contentHtml)));
-        $footerHtml = $translate($cleanImages($transformLinks($footerHtml)));
+        $footerHtml = $cleanFooter($translate($cleanImages($transformLinks($footerHtml))));
 
         $title = $translate($title);
         $description = $translate($description);
