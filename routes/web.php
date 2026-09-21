@@ -20,6 +20,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/pages', [AdminPageController::class, 'index'])->name('pages.index');
         Route::get('/pages/{page}/edit', [AdminPageController::class, 'edit'])->name('pages.edit');
         Route::put('/pages/{page}', [AdminPageController::class, 'update'])->name('pages.update');
+        Route::delete('/pages/{page}', [AdminPageController::class, 'destroy'])->name('pages.destroy');
         Route::post('/cache/clear', [AdminPageController::class, 'clearCache'])->name('cache.clear');
         Route::get('/password', [AdminPageController::class, 'showPassword'])->name('password');
         Route::put('/password', [AdminPageController::class, 'updatePassword'])->name('password.update');

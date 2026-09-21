@@ -84,6 +84,25 @@ class PageController extends Controller
             ->with('success', "Page '{$page->title}' ({$page->locale}) was successfully updated and cache cleared!");
     }
 
+    public function destroy(Page $page)
+    {
+        $title = $page->title;
+        $locale = $page->locale;
+        $slug = $page->slug;
+
+        $page->delete();
+
+        // Clear cache
+        Cache::forget("page_{$locale}_{$slug}");
+        Cache::flush();
+
+        // Sync changes to pages.json
+        $this->syncToJson();
+
+        return redirect()->route('admin.pages.index')
+            ->with('success', "Page '{$title}' ({$locale}) was successfully deleted.");
+    }
+
     public function clearCache()
     {
         Cache::flush();
