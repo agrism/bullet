@@ -40,7 +40,7 @@
         <div class="card__body">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
                 <div>
-                    <label for="title" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px;">Page Title (<title>)</label>
+                    <label for="title" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px;">Page Title (&lt;title&gt; tag)</label>
                     <input type="text" id="title" name="title" value="{{ old('title', $page->title) }}" required
                         style="width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; outline: none;">
                 </div>

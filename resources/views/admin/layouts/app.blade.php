@@ -289,7 +289,7 @@
             </div>
         @endif
 
-        @if($errors->any())
+        @if(isset($errors) && $errors->any())
             <div class="alert alert-error">
                 <div>
                     <strong>Please check the form for errors:</strong>
