@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
@@ -70,8 +71,11 @@ class PageController extends Controller
             ];
         }
 
-        // 1. Check if page exists in MySQL Database with localized slug
-        $page = Page::where('slug', $expectedSlug)->where('locale', $locale)->first();
+        // 1. Check if page exists in MySQL Database with localized slug (cached for performance)
+        $cacheKey = "page_{$locale}_" . ($expectedSlug === '' ? '__home__' : $expectedSlug);
+        $page = Cache::remember($cacheKey, 86400, function () use ($expectedSlug, $locale) {
+            return Page::where('slug', $expectedSlug)->where('locale', $locale)->first();
+        });
 
         if ($page) {
             return view('page', [
