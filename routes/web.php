@@ -27,6 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // Public Website Routes
+Route::redirect('/login', '/admin/login')->name('login');
 Route::redirect('/contacts', '/kontakti/');
 Route::get('/', [PageController::class, 'show']);
 Route::get('/{any}', [PageController::class, 'show'])->where('any', '.*');
